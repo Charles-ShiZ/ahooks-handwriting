@@ -1,11 +1,11 @@
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 
 export default function usePrevious<T>(state: T) {
-  const previousState = useRef<T>(state)
-
-  useEffect(() => {
-    previousState.current = state
-  }, [state])
-
-  return previousState.current
+  const preState = useRef<T>()
+  const curState = useRef<T>(state)
+  if (!Object.is(curState.current, state)) {
+    preState.current = curState.current
+    curState.current = state
+  }
+  return preState.current
 }
