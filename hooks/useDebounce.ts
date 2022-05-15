@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useUnmount } from 'ahooks'
+import useUnmount from './useUnmount'
 import { debounce } from './utils'
 
 export default function useDebounce(fn: () => void, delay: number = 500) {

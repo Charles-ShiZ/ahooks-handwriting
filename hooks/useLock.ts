@@ -6,12 +6,8 @@ export default function useLock(asyncFn: () => Promise<any>) {
     if (!locked) {
       locked = true
       const promise = asyncFn()
-      promise.then(() => {
-        locked = false
-      })
-      promise.catch(() => {
-        locked = false
-      })
+      promise.then(() => { locked = false })
+      promise.catch(() => { locked = false })
     }
   }, [asyncFn])
 }
